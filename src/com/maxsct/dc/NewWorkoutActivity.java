@@ -17,18 +17,18 @@ import com.parse.mealspotting.R;
  */
 public class NewWorkoutActivity extends Activity {
 
-	private Workout meal;
+	private Workout workout;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		meal = new Workout();
+		workout = new Workout();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 
 		// Begin with main data entry view,
 		// NewMealFragment
-		setContentView(R.layout.activity_new_meal);
+		setContentView(R.layout.activity_new_workout);
 		FragmentManager manager = getFragmentManager();
 		Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
 
@@ -39,8 +39,8 @@ public class NewWorkoutActivity extends Activity {
 		}
 	}
 
-	public Workout getCurrentMeal() {
-		return meal;
+	public Workout getCurrentWorkout() {
+		return workout;
 	}
 
 }

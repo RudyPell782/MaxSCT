@@ -1,15 +1,26 @@
 package com.maxsct.dc;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.inputmethod.InputMethodManager;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,23 +37,18 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.mealspotting.R;
 
-/*
- * This fragment manages the data entry for a
- * new Meal object. It lets the user input a 
- * meal name, give it a rating, and take a 
- * photo. If there is already a photo associated
- * with this meal, it will be displayed in the 
- * preview at the bottom, which is a standalone
- * ParseImageView.
- */
-public class NewWorkoutFragment extends Fragment {
+public class ExerciseFragment extends Fragment{
 
-	private ImageButton photoButton;
+	public static final String TAG = "ExerciseFragment";
+
+	
 	private Button saveButton;
 	private Button cancelButton;
 	private TextView workoutName;
-	//private Spinner mealRating;
-	//private ParseImageView mealPreview;
+	private Spinner repsCount;
+	private Spinner setsCount;
+	private TextView weight;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,19 +62,20 @@ public class NewWorkoutFragment extends Fragment {
 
 		workoutName = ((EditText) v.findViewById(R.id.meal_name));
 
-		
+		// The mealRating spinner lets people assign favorites of meals they've
+		// eaten.
+		// Meals with 4 or 5 ratings will appear in the Favorites view.
+		setsCount = ((Spinner) v.findViewById(R.id.rating_spinner));
+		ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
+				.createFromResource(getActivity(), R.array.sets_array,
+						android.R.layout.simple_spinner_dropdown_item);
+		setsCount.setAdapter(spinnerAdapter);
 
-		photoButton = ((ImageButton) v.findViewById(R.id.photo_button));
-		photoButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				InputMethodManager imm = (InputMethodManager) getActivity()
-						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startCamera();
-			}
-		});
+		repsCount = ((Spinner) v.findViewById(R.id.rating_spinner));
+		ArrayAdapter<CharSequence> spinnerAdapter2 = ArrayAdapter
+				.createFromResource(getActivity(), R.array.reps_array,
+						android.R.layout.simple_spinner_dropdown_item);
+		repsCount.setAdapter(spinnerAdapter);
 
 		saveButton = ((Button) v.findViewById(R.id.save_button));
 		saveButton.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +92,8 @@ public class NewWorkoutFragment extends Fragment {
 				workout.setAuthor(ParseUser.getCurrentUser());
 
 				// Add the rating
-				//workout.setRating(mealRating.getSelectedItem().toString());
+				workout.setEx1Reps(repsCount.getSelectedItem().toString());
+				workout.setEx1Sets(setsCount.getSelectedItem().toString());
 
 				// If the user added a photo, that data will be
 				// added in the CameraFragment
@@ -156,14 +164,14 @@ public class NewWorkoutFragment extends Fragment {
 		super.onResume();
 		ParseFile photoFile = ((NewWorkoutActivity) getActivity())
 				.getCurrentWorkout().getPhotoFile();
-		if (photoFile != null) {
+		if (photoFile != null) { 
 	//		mealPreview.setParseFile(photoFile);
-	//		mealPreview.loadInBackground(new GetDataCallback() {
+		//	mealPreview.loadInBackground(new GetDataCallback() {
 	//			@Override
-	//			public void done(byte[] data, ParseException e) {
-	//				mealPreview.setVisibility(View.VISIBLE);
-//				}
-	//		});
+			//	public void done(byte[] data, ParseException e) {
+			//		mealPreview.setVisibility(View.VISIBLE);
+			//	}
+		//	});
 		}
 	}
 

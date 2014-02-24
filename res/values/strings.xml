@@ -9,16 +9,40 @@
     <string name="action_new">Add a Meal</string>
     <string name="menu_title">My Meals</string>
     <string name="meal_label">Add a Meal</string>
+    <string name="exercise_label">Exercise</string>
     <string name="save_button_text">Save</string>
     <string name="cancel_button_text">Cancel</string>
 
-    <string-array name="ratings_array">
+    <string-array name="reps_array">
+        <item>18</item>
+        <item>17</item>
+        <item>16</item>
+        <item>15</item>
+        <item>14</item>
+        <item>13</item>
+        <item>12</item>
+        <item>11</item>
+        <item>10</item>
+        <item>9</item>
+        <item>8</item>
+        <item>8</item>
+        <item>7</item>
+        <item>6</item>
         <item>5</item>
         <item>4</item>
         <item>3</item>
         <item>2</item>
         <item>1</item>
-        <item></item>
+        <item>0</item>
+    </string-array>
+    
+    <string-array name="sets_array">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>RP</item>
     </string-array>
 
 </resources>

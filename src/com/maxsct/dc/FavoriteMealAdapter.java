@@ -62,7 +62,7 @@ public class FavoriteMealAdapter extends ParseQueryAdapter<Workout> {
 		titleTextView.setText(meal.getTitle());
 		TextView ratingTextView = (TextView) v
 				.findViewById(R.id.favorite_meal_rating);
-		ratingTextView.setText(meal.getRating());
+	//	ratingTextView.setText(meal.getRating());
 		return v;
 	}
 

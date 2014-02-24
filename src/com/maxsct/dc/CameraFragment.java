@@ -37,9 +37,9 @@ public class CameraFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_camera, parent, false);
+		View v = inflater.inflate(R.layout.fragment_exercise, parent, false);
 
-		photoButton = (ImageButton) v.findViewById(R.id.camera_photo_button);
+		//photoButton = (ImageButton) v.findViewById(R.id.camera_photo_button);
 
 		if (camera == null) {
 			try {
@@ -78,7 +78,7 @@ public class CameraFragment extends Fragment {
 			}
 		});
 
-		surfaceView = (SurfaceView) v.findViewById(R.id.camera_surface_view);
+//		surfaceView = (SurfaceView) v.findViewById(R.id.camera_surface_view);
 		SurfaceHolder holder = surfaceView.getHolder();
 		holder.addCallback(new Callback() {
 
@@ -155,7 +155,7 @@ public class CameraFragment extends Fragment {
 	 * until we reach that Fragment.
 	 */
 	private void addPhotoToMealAndReturn(ParseFile photoFile) {
-		((NewWorkoutActivity) getActivity()).getCurrentMeal().setPhotoFile(
+		((NewWorkoutActivity) getActivity()).getCurrentWorkout().setPhotoFile(
 				photoFile);
 		FragmentManager fm = getActivity().getFragmentManager();
 		fm.popBackStack("NewMealFragment",
