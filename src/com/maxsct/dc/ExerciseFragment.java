@@ -48,6 +48,7 @@ public class ExerciseFragment extends Fragment{
 	private Spinner repsCount;
 	private Spinner setsCount;
 	private TextView weight;
+	private TextView exerciseName;
 	
 
 	@Override
@@ -60,8 +61,8 @@ public class ExerciseFragment extends Fragment{
 			Bundle SavedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_exercise, parent, false);
 
-		workoutName = ((EditText) v.findViewById(R.id.exercise_name));
-
+		exerciseName = (TextView) v.findViewById(R.id.exercise_name);
+		exerciseName.setText("Some Text");
 		// The mealRating spinner lets people assign favorites of meals they've
 		// eaten.
 		// Meals with 4 or 5 ratings will appear in the Favorites view.

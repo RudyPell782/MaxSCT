@@ -25,6 +25,8 @@ import com.parse.ParseImageView;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.mealspotting.R;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 /*
  * This fragment manages the data entry for a
@@ -42,9 +44,17 @@ public class NewWorkoutFragment extends Fragment {
 	private Button exercise3Button;
 	private Button exercise4Button;
 	private Button exercise5Button;
+	private Spinner workoutType;
 	private Button saveButton;
 	private Button cancelButton;
-	private TextView workoutName;
+	private String workoutName;
+	private String[] exerciseList;
+	private String[] exerciseList1A = {"DB Flat Press", "HS Shoulder Press", "CG Bench Press","Wide Pulldowns", "T-Bar Row"};
+	private String[] exerciseList1B = {"BB Curl", "Reverse grip curl", "seated calf","lying Ham", "Front Squat"};
+	private String[] exerciseList2A = {"HS incline", "DB OHP", "JM press","CG Pulldown", "BB Row"};
+	private String[] exerciseList2B = {"DB Curl", "hammer curl", "standing calf","Seated Ham", "Leg Press"};
+	private final static String TAG = "Workout";
+	
 	//private Spinner mealRating;
 	//private ParseImageView mealPreview;
 
@@ -57,9 +67,47 @@ public class NewWorkoutFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle SavedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_new_workout, parent, false);
-
-		workoutName = ((EditText) v.findViewById(R.id.meal_name));
-
+		
+		
+		//workoutName = ((EditText) v.findViewById(R.id.workout_label));
+		workoutType = ((Spinner) v.findViewById(R.id.workout_label));
+		ArrayAdapter<CharSequence> spinnerAdapterWorkout = ArrayAdapter
+				.createFromResource(getActivity(), R.array.workout_array,
+						android.R.layout.simple_spinner_dropdown_item);
+		workoutType.setAdapter(spinnerAdapterWorkout);
+		
+		workoutType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+		        //workoutName = parent.getItemAtPosition(pos).toString();
+		        workoutName = workoutType.getSelectedItem().toString();
+		        Log.i(TAG, "name" + workoutName);
+		        if (workoutName == "1A"){
+		        	exerciseList = exerciseList1A;
+		        	updateButtonText();
+		        }
+		        else if (workoutName == "1B"){
+		        	exerciseList = exerciseList1B;
+		        	updateButtonText();
+		        }
+		        else if (workoutName == "2A"){
+		        	exerciseList = exerciseList2A;
+		        	updateButtonText();
+		        }
+		        else if (workoutName == "2B"){
+		        	exerciseList = exerciseList2B;
+		        	updateButtonText();
+		        }
+		        else
+		        	exerciseList = exerciseList1A;
+		            updateButtonText();
+		    }
+			@Override
+		    public void onNothingSelected(AdapterView<?> parent) {
+				exerciseList = exerciseList1A;
+				updateButtonText();
+		    }
+		});
 		
 
 		exercise1Button = ((Button) v.findViewById(R.id.exercise1_button));
@@ -69,7 +117,53 @@ public class NewWorkoutFragment extends Fragment {
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
+				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
+				startExercise();
+			}
+		});
+		
+		exercise2Button = ((Button) v.findViewById(R.id.exercise2_button));
+		exercise2Button.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				InputMethodManager imm = (InputMethodManager) getActivity()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
+				startExercise();
+			}
+		});
+		
+		exercise3Button = ((Button) v.findViewById(R.id.exercise3_button));
+		exercise3Button.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				InputMethodManager imm = (InputMethodManager) getActivity()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
+				startExercise();
+			}
+		});
+		exercise4Button = ((Button) v.findViewById(R.id.exercise4_button));
+		exercise4Button.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				InputMethodManager imm = (InputMethodManager) getActivity()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
+				startExercise();
+			}
+		});
+		exercise5Button = ((Button) v.findViewById(R.id.exercise5_button));
+		exercise5Button.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				InputMethodManager imm = (InputMethodManager) getActivity()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
 				startExercise();
 			}
 		});
@@ -83,7 +177,7 @@ public class NewWorkoutFragment extends Fragment {
 
 				// When the user clicks "Save," upload the meal to Parse
 				// Add data to the meal object:
-				workout.setTitle(workoutName.getText().toString());
+				workout.setTitle(workoutName.toString());
 
 				// Associate the meal with the current user
 				workout.setAuthor(ParseUser.getCurrentUser());
@@ -148,6 +242,16 @@ public class NewWorkoutFragment extends Fragment {
 		transaction.replace(R.id.fragmentContainer, exerciseFragment);
 		transaction.addToBackStack("NewWorkoutFragment");
 		transaction.commit();
+	}
+	
+	
+	public void updateButtonText() {
+		exercise1Button.setText(exerciseList[0]);
+		exercise2Button.setText(exerciseList[1]);
+		exercise3Button.setText(exerciseList[2]);
+		exercise4Button.setText(exerciseList[3]);
+		exercise5Button.setText(exerciseList[4]);
+		
 	}
 
 	/*

@@ -4,33 +4,49 @@
     android:layout_height="match_parent" 
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="@string/exercise_label"
-        android:textSize="20sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine" />
+        android:layout_marginLeft="5dp"
+        android:text="@string/exercise_name"
+        android:textSize="20sp" />
 
-    <Spinner
+   <LinearLayout
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		<TextView 
+    		android:layout_width="wrap_content" 
+    		android:layout_height="wrap_content" 
+    		android:text="@string/sets"/> 
+		<Spinner
         android:id="@+id/sets_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    
-    <Spinner
+    </LinearLayout>
+    <LinearLayout
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		<TextView 
+    		android:layout_width="wrap_content" 
+    		android:layout_height="wrap_content" 
+    		android:text="@string/reps"/> 
+		<Spinner
         android:id="@+id/reps_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    </LinearLayout>
+	 
 
      <EditText
         android:id="@+id/weight"
+        android:hint="@string/weight_reminder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
         android:inputType="number" />
 
     <Button

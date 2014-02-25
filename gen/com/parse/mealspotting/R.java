@@ -11,6 +11,7 @@ public final class R {
     public static final class array {
         public static final int reps_array=0x7f050000;
         public static final int sets_array=0x7f050001;
+        public static final int workout_array=0x7f050002;
     }
     public static final class attr {
     }
@@ -23,24 +24,28 @@ public final class R {
         public static final int ic_launcher=0x7f020005;
     }
     public static final class id {
-        public static final int action_favorites=0x7f080010;
-        public static final int action_new=0x7f080011;
-        public static final int action_refresh=0x7f08000f;
+        public static final int action_favorites=0x7f080014;
+        public static final int action_new=0x7f080015;
+        public static final int action_refresh=0x7f080013;
         public static final int cancel_button=0x7f080006;
         public static final int exercise1_button=0x7f080009;
+        public static final int exercise2_button=0x7f08000a;
+        public static final int exercise3_button=0x7f08000b;
+        public static final int exercise4_button=0x7f08000c;
+        public static final int exercise5_button=0x7f08000d;
         public static final int exercise_name=0x7f080001;
-        public static final int favorite_meal_rating=0x7f08000d;
-        public static final int favorite_star=0x7f08000b;
+        public static final int favorite_meal_rating=0x7f080011;
+        public static final int favorite_star=0x7f08000f;
         public static final int fragmentContainer=0x7f080000;
-        public static final int icon=0x7f08000a;
-        public static final int meal_name=0x7f080008;
+        public static final int icon=0x7f08000e;
         public static final int meal_preview_image=0x7f080007;
-        public static final int menu_title=0x7f08000e;
+        public static final int menu_title=0x7f080012;
         public static final int reps_spinner=0x7f080003;
         public static final int save_button=0x7f080005;
         public static final int sets_spinner=0x7f080002;
-        public static final int text1=0x7f08000c;
+        public static final int text1=0x7f080010;
         public static final int weight=0x7f080004;
+        public static final int workout_label=0x7f080008;
     }
     public static final class layout {
         public static final int activity_new_workout=0x7f030000;
@@ -56,19 +61,24 @@ public final class R {
         public static final int action_new=0x7f040006;
         public static final int action_refresh=0x7f040004;
         public static final int app_name=0x7f040000;
-        public static final int cancel_button_text=0x7f04000b;
-        public static final int exercise1_button_text=0x7f04000c;
-        public static final int exercise2_button_text=0x7f04000d;
-        public static final int exercise3_button_text=0x7f04000e;
-        public static final int exercise4_button_text=0x7f04000f;
-        public static final int exercise5_button_text=0x7f040010;
-        public static final int exercise_label=0x7f040009;
-        public static final int meal_label=0x7f040008;
+        public static final int cancel_button_text=0x7f04000d;
+        public static final int exercise1_button_text=0x7f04000e;
+        public static final int exercise2_button_text=0x7f04000f;
+        public static final int exercise3_button_text=0x7f040010;
+        public static final int exercise4_button_text=0x7f040011;
+        public static final int exercise5_button_text=0x7f040012;
+        public static final int exercise_label=0x7f04000a;
+        public static final int exercise_name=0x7f04000b;
         public static final int menu_settings=0x7f040001;
         public static final int menu_title=0x7f040007;
-        public static final int save_button_text=0x7f04000a;
+        public static final int new_workout=0x7f040008;
+        public static final int reps=0x7f040014;
+        public static final int save_button_text=0x7f04000c;
+        public static final int sets=0x7f040013;
         public static final int title_activity_meal_list=0x7f040002;
         public static final int title_activity_new_meal=0x7f040003;
+        public static final int weight_reminder=0x7f040015;
+        public static final int workout_label=0x7f040009;
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;
