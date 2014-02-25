@@ -82,30 +82,36 @@ public class NewWorkoutFragment extends Fragment {
 		        //workoutName = parent.getItemAtPosition(pos).toString();
 		        workoutName = workoutType.getSelectedItem().toString();
 		        Log.i(TAG, "name" + workoutName);
-		        if (workoutName == "1A"){
+		        if (workoutName.equals("1A")){
 		        	exerciseList = exerciseList1A;
 		        	updateButtonText();
+		        	Log.i(TAG, "1A IF" );
 		        }
-		        else if (workoutName == "1B"){
+		        else if (workoutName.equals("1B")){
 		        	exerciseList = exerciseList1B;
 		        	updateButtonText();
+		        	Log.i(TAG, "1b IF" );
 		        }
-		        else if (workoutName == "2A"){
+		        else if (workoutName.equals("2A")){
 		        	exerciseList = exerciseList2A;
 		        	updateButtonText();
+		        	Log.i(TAG, "2A IF" );
 		        }
-		        else if (workoutName == "2B"){
+		        else if (workoutName.equals("2B")){
 		        	exerciseList = exerciseList2B;
 		        	updateButtonText();
+		        	Log.i(TAG, "2b IF" );
 		        }
 		        else
 		        	exerciseList = exerciseList1A;
 		            updateButtonText();
+		            Log.i(TAG, "default IF" );
 		    }
 			@Override
 		    public void onNothingSelected(AdapterView<?> parent) {
 				exerciseList = exerciseList1A;
 				updateButtonText();
+				Log.i(TAG, "nothing IF" );
 		    }
 		});
 		
@@ -118,7 +124,7 @@ public class NewWorkoutFragment extends Fragment {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise();
+				startExercise(workoutName, 1, 1, exerciseList[0]);
 			}
 		});
 		
@@ -130,7 +136,7 @@ public class NewWorkoutFragment extends Fragment {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise();
+				startExercise(workoutName, 2, 1, exerciseList[1]);
 			}
 		});
 		
@@ -142,7 +148,7 @@ public class NewWorkoutFragment extends Fragment {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise();
+				startExercise(workoutName, 3, 1, exerciseList[2]);
 			}
 		});
 		exercise4Button = ((Button) v.findViewById(R.id.exercise4_button));
@@ -153,7 +159,7 @@ public class NewWorkoutFragment extends Fragment {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise();
+				startExercise(workoutName, 4, 1, exerciseList[3]);
 			}
 		});
 		exercise5Button = ((Button) v.findViewById(R.id.exercise5_button));
@@ -164,7 +170,7 @@ public class NewWorkoutFragment extends Fragment {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise();
+				startExercise(workoutName, 5, 1, exerciseList[4]);
 			}
 		});
 
@@ -235,8 +241,14 @@ public class NewWorkoutFragment extends Fragment {
 	 * add the NewMealFragment to the back stack so we can return to it when the
 	 * camera is finished.
 	 */
-	public void startExercise() {
+	public void startExercise(String workout, int exercise, int workoutID, String exerciseName) {
 		Fragment exerciseFragment = new ExerciseFragment();
+		Bundle args = new Bundle();
+	    args.putInt("exercise", exercise);
+	    args.putInt("workoutID", workoutID);
+	    args.putString("workout", workout);
+	    args.putString("exerciseName", exerciseName);
+	    exerciseFragment.setArguments(args);
 		FragmentTransaction transaction = getActivity().getFragmentManager()
 				.beginTransaction();
 		transaction.replace(R.id.fragmentContainer, exerciseFragment);
@@ -247,7 +259,9 @@ public class NewWorkoutFragment extends Fragment {
 	
 	public void updateButtonText() {
 		exercise1Button.setText(exerciseList[0]);
+		Log.i(TAG, "ex1 text" + exerciseList[0] );
 		exercise2Button.setText(exerciseList[1]);
+		Log.i(TAG, "ex2 text" + exerciseList[1] );
 		exercise3Button.setText(exerciseList[2]);
 		exercise4Button.setText(exerciseList[3]);
 		exercise5Button.setText(exerciseList[4]);
