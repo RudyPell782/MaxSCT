@@ -17,16 +17,11 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine" />
 
-    <Spinner
-        android:id="@+id/rating_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ImageButton
-        android:id="@+id/photo_button"
+   <Button
+        android:id="@+id/exercise1_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_photo" />
+        android:src="@string/exercise1_button_text" />
 
     <Button
         android:id="@+id/save_button"

@@ -37,7 +37,11 @@ import com.parse.mealspotting.R;
  */
 public class NewWorkoutFragment extends Fragment {
 
-	private ImageButton photoButton;
+	private Button exercise1Button;
+	private Button exercise2Button;
+	private Button exercise3Button;
+	private Button exercise4Button;
+	private Button exercise5Button;
 	private Button saveButton;
 	private Button cancelButton;
 	private TextView workoutName;
@@ -58,15 +62,15 @@ public class NewWorkoutFragment extends Fragment {
 
 		
 
-		photoButton = ((ImageButton) v.findViewById(R.id.photo_button));
-		photoButton.setOnClickListener(new View.OnClickListener() {
+		exercise1Button = ((Button) v.findViewById(R.id.exercise1_button));
+		exercise1Button.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startCamera();
+				startExercise();
 			}
 		});
 
@@ -137,12 +141,12 @@ public class NewWorkoutFragment extends Fragment {
 	 * add the NewMealFragment to the back stack so we can return to it when the
 	 * camera is finished.
 	 */
-	public void startCamera() {
-		Fragment cameraFragment = new CameraFragment();
+	public void startExercise() {
+		Fragment exerciseFragment = new ExerciseFragment();
 		FragmentTransaction transaction = getActivity().getFragmentManager()
 				.beginTransaction();
-		transaction.replace(R.id.fragmentContainer, cameraFragment);
-		transaction.addToBackStack("NewMealFragment");
+		transaction.replace(R.id.fragmentContainer, exerciseFragment);
+		transaction.addToBackStack("NewWorkoutFragment");
 		transaction.commit();
 	}
 

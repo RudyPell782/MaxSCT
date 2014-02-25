@@ -58,24 +58,26 @@ public class ExerciseFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle SavedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_new_workout, parent, false);
+		View v = inflater.inflate(R.layout.fragment_exercise, parent, false);
 
-		workoutName = ((EditText) v.findViewById(R.id.meal_name));
+		workoutName = ((EditText) v.findViewById(R.id.exercise_name));
 
 		// The mealRating spinner lets people assign favorites of meals they've
 		// eaten.
 		// Meals with 4 or 5 ratings will appear in the Favorites view.
-		setsCount = ((Spinner) v.findViewById(R.id.rating_spinner));
-		ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
+		setsCount = ((Spinner) v.findViewById(R.id.sets_spinner));
+		ArrayAdapter<CharSequence> spinnerAdapterSets = ArrayAdapter
 				.createFromResource(getActivity(), R.array.sets_array,
 						android.R.layout.simple_spinner_dropdown_item);
-		setsCount.setAdapter(spinnerAdapter);
+		setsCount.setAdapter(spinnerAdapterSets);
 
-		repsCount = ((Spinner) v.findViewById(R.id.rating_spinner));
-		ArrayAdapter<CharSequence> spinnerAdapter2 = ArrayAdapter
+		repsCount = ((Spinner) v.findViewById(R.id.reps_spinner));
+		ArrayAdapter<CharSequence> spinnerAdapterReps = ArrayAdapter
 				.createFromResource(getActivity(), R.array.reps_array,
 						android.R.layout.simple_spinner_dropdown_item);
-		repsCount.setAdapter(spinnerAdapter);
+		repsCount.setAdapter(spinnerAdapterReps);
+		
+		weight = ((EditText) v.findViewById(R.id.weight));
 
 		saveButton = ((Button) v.findViewById(R.id.save_button));
 		saveButton.setOnClickListener(new View.OnClickListener() {
