@@ -1,5 +1,7 @@
 package com.maxsct.dc;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -182,19 +184,16 @@ public class NewWorkoutFragment extends Fragment {
 				Workout workout = ((NewWorkoutActivity) getActivity()).getCurrentWorkout();
 
 				// When the user clicks "Save," upload the meal to Parse
-				// Add data to the meal object:
+				// Add data to the workout object:
 				workout.setTitle(workoutName.toString());
+				workout.setDate(new Date());
 
-				// Associate the meal with the current user
+				// Associate the workout with the current user
 				workout.setAuthor(ParseUser.getCurrentUser());
 
-				// Add the rating
-				//workout.setRating(mealRating.getSelectedItem().toString());
+				
 
-				// If the user added a photo, that data will be
-				// added in the CameraFragment
-
-				// Save the meal and return
+				// Save the workout and return
 				workout.saveInBackground(new SaveCallback() {
 
 					@Override
@@ -225,21 +224,13 @@ public class NewWorkoutFragment extends Fragment {
 			}
 		});
 
-		// Until the user has taken a photo, hide the preview
-	//	mealPreview = (ParseImageView) v.findViewById(R.id.meal_preview_image);
-	//	mealPreview.setVisibility(View.INVISIBLE);
-
 		return v;
 	}
 
 	/*
-	 * All data entry about a Meal object is managed from the NewMealActivity.
-	 * When the user wants to add a photo, we'll start up a custom
-	 * CameraFragment that will let them take the photo and save it to the Meal
-	 * object owned by the NewMealActivity. Create a new CameraFragment, swap
-	 * the contents of the fragmentContainer (see activity_new_meal.xml), then
-	 * add the NewMealFragment to the back stack so we can return to it when the
-	 * camera is finished.
+	 * All data entry about a WOrkout object is managed from the NewWorkoutActivity.
+	 * When the user wants to add a exercise, we'll start up a custom
+	 * ExerciseFragment that will let them create an Exercise
 	 */
 	public void startExercise(String workout, int exercise, int workoutID, String exerciseName) {
 		Fragment exerciseFragment = new ExerciseFragment();
@@ -276,17 +267,7 @@ public class NewWorkoutFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		ParseFile photoFile = ((NewWorkoutActivity) getActivity())
-				.getCurrentWorkout().getPhotoFile();
-		if (photoFile != null) {
-	//		mealPreview.setParseFile(photoFile);
-	//		mealPreview.loadInBackground(new GetDataCallback() {
-	//			@Override
-	//			public void done(byte[] data, ParseException e) {
-	//				mealPreview.setVisibility(View.VISIBLE);
-//				}
-	//		});
-		}
+		
 	}
 
 }

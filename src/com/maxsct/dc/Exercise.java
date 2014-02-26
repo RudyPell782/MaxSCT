@@ -1,6 +1,8 @@
 package com.maxsct.dc;
 
 
+import java.util.Date;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -15,16 +17,16 @@ import com.parse.ParseUser;
 @ParseClassName("Exercise")
 public class Exercise extends ParseObject {
 
-	public Exercise(String workoutID) {
-		put("workoutID", workoutID);
+	public Exercise() {
+		
 	}
 
-	public String getTitle() {
-		return getString("title");
+	public String getName() {
+		return getString("name");
 	}
 
-	public void setTitle(String title) {
-		put("title", title);
+	public void setName(String name) {
+		put("name", name);
 	}
 
 	public ParseUser getAuthor() {
@@ -51,12 +53,20 @@ public class Exercise extends ParseObject {
 		put("reps", reps);
 	}
 	
-	public String getWeight() {
-		return getString("weight");
+	public int getWeight() {
+		return getInt("weight");
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(int weight) {
 		put("weight", weight);
+	}
+	
+	public Date getDate() {
+		return getDate("exerciseDate");
+	}
+
+	public void setDate(Date date) {
+		put("exerciseDate", date);
 	}
 	
 }

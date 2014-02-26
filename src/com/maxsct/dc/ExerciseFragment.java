@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -63,7 +64,7 @@ public class ExerciseFragment extends Fragment{
 	private String[] hints2 = {"2", "8-10, 20"};
 	private String[] hints3 = {"2", "6-9"};
 	
-	
+	// Map Exercises to their respective hint values
 	HashMap<String, String[]> hintsDictionary = new HashMap<String, String[]>(){{
 	  for(int i=0; i<exerciseList.length; i++){
 		  if(exerciseList[i].equals("Front Squat") || exerciseList[i].equals("Leg Press")){
@@ -106,9 +107,7 @@ public class ExerciseFragment extends Fragment{
 		setsHint.setText(getValue(exerciseNameLabel, 0));
 		repsHint = (TextView) v.findViewById(R.id.reps_hint);
 		repsHint.setText(getValue(exerciseNameLabel, 1));
-		// The mealRating spinner lets people assign favorites of meals they've
-		// eaten.
-		// Meals with 4 or 5 ratings will appear in the Favorites view.
+		
 		setsCount = ((Spinner) v.findViewById(R.id.sets_spinner));
 		ArrayAdapter<CharSequence> spinnerAdapterSets = ArrayAdapter
 				.createFromResource(getActivity(), R.array.sets_array,
@@ -128,24 +127,25 @@ public class ExerciseFragment extends Fragment{
 
 			@Override
 			public void onClick(View v) {
-				Workout workout = ((NewWorkoutActivity) getActivity()).getCurrentWorkout();
+				Exercise exercise = ((NewExerciseActivity) getActivity()).getCurrentExercise();
 
-				// When the user clicks "Save," upload the meal to Parse
-				// Add data to the meal object:
-				workout.setTitle(workoutName.getText().toString());
+				// When the user clicks "Save," upload the exercise to Parse
+				// Add data to the exercise object:
+				exercise.setName(exerciseNameLabel);
+				exercise.setDate(new Date());
 
-				// Associate the meal with the current user
-				workout.setAuthor(ParseUser.getCurrentUser());
+				// Associate the exercise with the current user
+				exercise.setAuthor(ParseUser.getCurrentUser());
 
-				// Add the rating
-				workout.setEx1Reps(repsCount.getSelectedItem().toString());
-				workout.setEx1Sets(setsCount.getSelectedItem().toString());
+				// Add the user input data
+				exercise.setReps(repsCount.getSelectedItem().toString());
+				exercise.setSets(setsCount.getSelectedItem().toString());
+				exercise.setWeight(Integer.parseInt(weight.getText().toString()));
 
-				// If the user added a photo, that data will be
-				// added in the CameraFragment
+				
 
-				// Save the meal and return
-				workout.saveInBackground(new SaveCallback() {
+				// Save the exercise and return
+				exercise.saveInBackground(new SaveCallback() {
 
 					@Override
 					public void done(ParseException e) {
@@ -175,50 +175,15 @@ public class ExerciseFragment extends Fragment{
 			}
 		});
 
-		// Until the user has taken a photo, hide the preview
-	//	mealPreview = (ParseImageView) v.findViewById(R.id.meal_preview_image);
-	//	mealPreview.setVisibility(View.INVISIBLE);
-
 		return v;
 	}
 
-	/*
-	 * All data entry about a Meal object is managed from the NewMealActivity.
-	 * When the user wants to add a photo, we'll start up a custom
-	 * CameraFragment that will let them take the photo and save it to the Meal
-	 * object owned by the NewMealActivity. Create a new CameraFragment, swap
-	 * the contents of the fragmentContainer (see activity_new_meal.xml), then
-	 * add the NewMealFragment to the back stack so we can return to it when the
-	 * camera is finished.
-	 */
-	public void startCamera() {
-		Fragment cameraFragment = new CameraFragment();
-		FragmentTransaction transaction = getActivity().getFragmentManager()
-				.beginTransaction();
-		transaction.replace(R.id.fragmentContainer, cameraFragment);
-		transaction.addToBackStack("NewMealFragment");
-		transaction.commit();
-	}
+	
 
-	/*
-	 * On resume, check and see if a meal photo has been set from the
-	 * CameraFragment. If it has, load the image in this fragment and make the
-	 * preview image visible.
-	 */
+	
 	@Override
 	public void onResume() {
 		super.onResume();
-		ParseFile photoFile = ((NewWorkoutActivity) getActivity())
-				.getCurrentWorkout().getPhotoFile();
-		if (photoFile != null) { 
-	//		mealPreview.setParseFile(photoFile);
-		//	mealPreview.loadInBackground(new GetDataCallback() {
-	//			@Override
-			//	public void done(byte[] data, ParseException e) {
-			//		mealPreview.setVisibility(View.VISIBLE);
-			//	}
-		//	});
-		}
 	}
 
 }
