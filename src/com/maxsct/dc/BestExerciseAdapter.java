@@ -16,20 +16,20 @@ import com.parse.ParseQueryAdapter;
 import com.parse.mealspotting.R;
 
 /*
- * The FavoriteMealAdapter is an extension of ParseQueryAdapter
+ * The BestWorkoutAdapter is an extension of ParseQueryAdapter
  * that has a custom layout for favorite meals, including a 
  * bigger preview image, the meal's rating, and a "favorite"
  * star. 
  */
 
-public class FavoriteMealAdapter extends ParseQueryAdapter<Workout> {
+public class BestExerciseAdapter extends ParseQueryAdapter<Exercise> {
 
-	public FavoriteMealAdapter(Context context) {
-		super(context, new ParseQueryAdapter.QueryFactory<Workout>() {
-			public ParseQuery<Workout> create() {
+	public BestExerciseAdapter(Context context) {
+		super(context, new ParseQueryAdapter.QueryFactory<Exercise>() {
+			public ParseQuery<Exercise> create() {
 				// Here we can configure a ParseQuery to display
 				// only top-rated meals.
-				ParseQuery query = new ParseQuery("Meal");
+				ParseQuery query = new ParseQuery("Exercise");
 				query.whereContainedIn("rating", Arrays.asList("5", "4"));
 				query.orderByDescending("rating");
 				return query;
@@ -38,16 +38,16 @@ public class FavoriteMealAdapter extends ParseQueryAdapter<Workout> {
 	}
 
 	@Override
-	public View getItemView(Workout meal, View v, ViewGroup parent) {
+	public View getItemView(Exercise exercise, View v, ViewGroup parent) {
 
 		if (v == null) {
 			v = View.inflate(getContext(), R.layout.item_list_favorites, null);
 		}
 
-		super.getItemView(meal, v, parent);
+		super.getItemView(exercise, v, parent);
 
 		ParseImageView mealImage = (ParseImageView) v.findViewById(R.id.icon);
-		ParseFile photoFile = meal.getParseFile("photo");
+		ParseFile photoFile = exercise.getParseFile("photo");
 		if (photoFile != null) {
 			mealImage.setParseFile(photoFile);
 			mealImage.loadInBackground(new GetDataCallback() {
@@ -59,7 +59,7 @@ public class FavoriteMealAdapter extends ParseQueryAdapter<Workout> {
 		}
 
 		TextView titleTextView = (TextView) v.findViewById(R.id.text1);
-		titleTextView.setText(meal.getTitle());
+		titleTextView.setText(exercise.getName());
 		TextView ratingTextView = (TextView) v
 				.findViewById(R.id.favorite_meal_rating);
 	//	ratingTextView.setText(meal.getRating());

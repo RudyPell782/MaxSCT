@@ -50,7 +50,7 @@ public class RegisterActivity extends Activity {
 			@Override
 			public void done(ParseException e) {
 				if (e == null) {
-					Intent intent = new Intent(RegisterActivity.this, NewWorkoutActivity.class);
+					Intent intent = new Intent(RegisterActivity.this, WorkoutListActivity.class);
 					startActivity(intent);
 					finish();
 				} else {

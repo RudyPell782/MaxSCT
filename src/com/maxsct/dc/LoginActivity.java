@@ -43,7 +43,7 @@ package com.maxsct.dc;
 				@Override
 				public void done(ParseUser user, ParseException e) {
 					if (user != null) {
-						Intent intent = new Intent(LoginActivity.this, NewWorkoutActivity.class);
+						Intent intent = new Intent(LoginActivity.this, WorkoutListActivity.class);
 						startActivity(intent);
 						finish();
 					} else {

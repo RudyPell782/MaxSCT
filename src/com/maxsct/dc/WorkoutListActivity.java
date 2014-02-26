@@ -14,7 +14,7 @@ import com.parse.mealspotting.R;
 public class WorkoutListActivity extends ListActivity {
 
 	private ParseQueryAdapter<Workout> mainAdapter;
-	private FavoriteMealAdapter favoritesAdapter;
+	private BestExerciseAdapter favoritesAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class WorkoutListActivity extends ListActivity {
 		mainAdapter.setImageKey("photo");
 
 		// Subclass of ParseQueryAdapter
-		favoritesAdapter = new FavoriteMealAdapter(this);
+		favoritesAdapter = new BestExerciseAdapter(this);
 
 		// Default view is all meals
 		setListAdapter(mainAdapter);
