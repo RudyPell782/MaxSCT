@@ -57,7 +57,7 @@ public class ExerciseFragment extends Fragment{
 	private String exerciseNameLabel;
 	private String workout;
 	private int workoutID;
-    private int exercise;	
+    private int exerciseID;	
     private String[] exerciseList = {"DB Flat Press", "HS Shoulder Press", "CG Bench Press","Wide Pulldowns", "T-Bar Row", "BB Curl", "Reverse-grip Curl", "Seated Calf",
     		"Lying Ham", "Front Squat","HS Incline", "DB OHP", "JM press","CG Pulldown", "BB Row","DB Curl", "Hammer Curl", "Standing Calf","Seated Ham", "Leg Press"};
 	private String[] hints1 = {"Rest Pause", "11-15"};
@@ -95,7 +95,7 @@ public class ExerciseFragment extends Fragment{
 			Bundle SavedInstanceState) {
 	    workout = getArguments().getString("workout");
 	    exerciseNameLabel = getArguments().getString("exerciseName");  
-	    exercise = getArguments().getInt("exercise");  
+	    exerciseID = getArguments().getInt("exercise");  
 	    workoutID = getArguments().getInt("workoutID");  
 		View v = inflater.inflate(R.layout.fragment_exercise, parent, false);
 		
@@ -150,8 +150,8 @@ public class ExerciseFragment extends Fragment{
 					@Override
 					public void done(ParseException e) {
 						if (e == null) {
-							getActivity().setResult(Activity.RESULT_OK);
-							getActivity().finish();
+						((NewWorkoutActivity) getActivity()).setExerciseComplete(exerciseID, true);
+							getFragmentManager().popBackStackImmediate();
 						} else {
 							Toast.makeText(
 									getActivity().getApplicationContext(),

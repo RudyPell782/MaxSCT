@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 import com.parse.mealspotting.R;
 
 public class WorkoutListActivity extends ListActivity {
@@ -17,6 +18,12 @@ public class WorkoutListActivity extends ListActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser == null){
+			  Intent intent = new Intent(this, LoginActivity.class);
+			  startActivity(intent);
+			  finish();
+			}
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
 

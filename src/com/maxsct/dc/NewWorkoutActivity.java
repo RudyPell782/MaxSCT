@@ -3,11 +3,13 @@ package com.maxsct.dc;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 import com.parse.mealspotting.R;
 
 /*
@@ -18,9 +20,18 @@ import com.parse.mealspotting.R;
 public class NewWorkoutActivity extends Activity {
 
 	private Workout workout;
+	private boolean[] exerciseComplete = {false, false, false, false, false};
+	
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser == null){
+			  Intent intent = new Intent(this, LoginActivity.class);
+			  startActivity(intent);
+			  finish();
+			}
 		workout = new Workout();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -41,6 +52,13 @@ public class NewWorkoutActivity extends Activity {
 
 	public Workout getCurrentWorkout() {
 		return workout;
+	}
+	
+	public boolean getExerciseComplete(int index) {
+		return exerciseComplete[index];
+	}
+	public void setExerciseComplete(int index, boolean complete) {
+		exerciseComplete[index] = complete;
 	}
 
 }

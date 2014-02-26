@@ -70,8 +70,6 @@ public class NewWorkoutFragment extends Fragment {
 			Bundle SavedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_new_workout, parent, false);
 		
-		
-		//workoutName = ((EditText) v.findViewById(R.id.workout_label));
 		workoutType = ((Spinner) v.findViewById(R.id.workout_label));
 		ArrayAdapter<CharSequence> spinnerAdapterWorkout = ArrayAdapter
 				.createFromResource(getActivity(), R.array.workout_array,
@@ -81,7 +79,8 @@ public class NewWorkoutFragment extends Fragment {
 		workoutType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-		        //workoutName = parent.getItemAtPosition(pos).toString();
+				
+				//determine selected workout, set exercises
 		        workoutName = workoutType.getSelectedItem().toString();
 		        Log.i(TAG, "name" + workoutName);
 		        if (workoutName.equals("1A")){
@@ -117,65 +116,91 @@ public class NewWorkoutFragment extends Fragment {
 		    }
 		});
 		
-
+/*  
+ * Button Block, initialize and set listener, also listen for exercise completion - disable button when completed
+ * 
+ */
 		exercise1Button = ((Button) v.findViewById(R.id.exercise1_button));
+		if (((NewWorkoutActivity) getActivity()).getExerciseComplete(0)){
+			exercise1Button.setEnabled(false);
+		} else {
+			exercise1Button.setEnabled(true);
+		}
 		exercise1Button.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise(workoutName, 1, 1, exerciseList[0]);
+				startExercise(workoutName, 0, 1, exerciseList[0]);
 			}
 		});
 		
 		exercise2Button = ((Button) v.findViewById(R.id.exercise2_button));
+		if (((NewWorkoutActivity) getActivity()).getExerciseComplete(1)){
+			exercise2Button.setEnabled(false);
+		} else {
+			exercise2Button.setEnabled(true);
+		}
 		exercise2Button.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise(workoutName, 2, 1, exerciseList[1]);
+				startExercise(workoutName, 1, 1, exerciseList[1]);
 			}
 		});
 		
 		exercise3Button = ((Button) v.findViewById(R.id.exercise3_button));
+		if (((NewWorkoutActivity) getActivity()).getExerciseComplete(2)){
+			exercise3Button.setEnabled(false);
+		} else {
+			exercise3Button.setEnabled(true);
+		}
 		exercise3Button.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise(workoutName, 3, 1, exerciseList[2]);
+				startExercise(workoutName, 2, 1, exerciseList[2]);
 			}
 		});
+		
 		exercise4Button = ((Button) v.findViewById(R.id.exercise4_button));
+		if (((NewWorkoutActivity) getActivity()).getExerciseComplete(3)){
+			exercise4Button.setEnabled(false);
+		} else {
+			exercise4Button.setEnabled(true);
+		}
 		exercise4Button.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise(workoutName, 4, 1, exerciseList[3]);
+				startExercise(workoutName, 3, 1, exerciseList[3]);
 			}
 		});
+		
 		exercise5Button = ((Button) v.findViewById(R.id.exercise5_button));
+		if (((NewWorkoutActivity) getActivity()).getExerciseComplete(4)){
+			exercise5Button.setEnabled(false);
+		} else {
+			exercise5Button.setEnabled(true);
+		}
 		exercise5Button.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				InputMethodManager imm = (InputMethodManager) getActivity()
 						.getSystemService(Context.INPUT_METHOD_SERVICE);
-				//imm.hideSoftInputFromWindow(workoutName.getWindowToken(), 0);
-				startExercise(workoutName, 5, 1, exerciseList[4]);
+				startExercise(workoutName, 4, 1, exerciseList[4]);
 			}
 		});
 
+		//save button
 		saveButton = ((Button) v.findViewById(R.id.save_button));
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -191,7 +216,6 @@ public class NewWorkoutFragment extends Fragment {
 				// Associate the workout with the current user
 				workout.setAuthor(ParseUser.getCurrentUser());
 
-				
 
 				// Save the workout and return
 				workout.saveInBackground(new SaveCallback() {
@@ -247,12 +271,10 @@ public class NewWorkoutFragment extends Fragment {
 		transaction.commit();
 	}
 	
-	
+	//Update Button Labels to reflect selected workout exercises
 	public void updateButtonText() {
 		exercise1Button.setText(exerciseList[0]);
-		Log.i(TAG, "ex1 text" + exerciseList[0] );
 		exercise2Button.setText(exerciseList[1]);
-		Log.i(TAG, "ex2 text" + exerciseList[1] );
 		exercise3Button.setText(exerciseList[2]);
 		exercise4Button.setText(exerciseList[3]);
 		exercise5Button.setText(exerciseList[4]);
@@ -260,9 +282,7 @@ public class NewWorkoutFragment extends Fragment {
 	}
 
 	/*
-	 * On resume, check and see if a meal photo has been set from the
-	 * CameraFragment. If it has, load the image in this fragment and make the
-	 * preview image visible.
+	 * On resume
 	 */
 	@Override
 	public void onResume() {

@@ -37,7 +37,7 @@ public class DCApplication extends Application {
 		 * Learn more about the ParseUser class:
 		 * https://www.parse.com/docs/android_guide#users
 		 */
-		ParseUser.enableAutomaticUser();
+		//ParseUser.enableAutomaticUser();
 
 		/*
 		 * For more information on app security and Parse ACL:
