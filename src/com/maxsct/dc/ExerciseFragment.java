@@ -127,7 +127,7 @@ public class ExerciseFragment extends Fragment{
 
 			@Override
 			public void onClick(View v) {
-				Exercise exercise = ((NewExerciseActivity) getActivity()).getCurrentExercise();
+				Exercise exercise = new Exercise();
 
 				// When the user clicks "Save," upload the exercise to Parse
 				// Add data to the exercise object:
@@ -157,6 +157,7 @@ public class ExerciseFragment extends Fragment{
 									getActivity().getApplicationContext(),
 									"Error saving: " + e.getMessage(),
 									Toast.LENGTH_SHORT).show();
+							Log.i(TAG, e.getMessage());
 						}
 					}
 

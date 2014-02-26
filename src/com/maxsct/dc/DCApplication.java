@@ -14,15 +14,15 @@ public class DCApplication extends Application {
 		super.onCreate();
 
 		/*
-		 * In this tutorial, we'll subclass ParseObject for convenience to
-		 * create and modify Meal objects
+		 * Register Parse Objects for use
 		 */
 		ParseObject.registerSubclass(Workout.class);
+		ParseObject.registerSubclass(Exercise.class);
 
 		/*
 		 * Fill in this section with your Parse credentials
 		 */
-		Parse.initialize(this, "YOUR_APP_ID", "YOUR_CLIENT_KEY");
+		Parse.initialize(this, "8NfCrj533xXnPs1ZFpp3v8Pm4iB3KlTh6aepm4b5", "WO8CUqukRh5H2uIGVRYUXv3ryKIxXNOoXMGg3JmJ");
 
 		/*
 		 * This app lets an anonymous user create and save photos of meals
