@@ -25,6 +25,12 @@
         android:id="@+id/sets_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+		<TextView 
+		    android:id="@+id/sets_hint"
+    		android:layout_width="wrap_content" 
+    		android:layout_height="wrap_content"
+    		android:textColor="#0000ff" 
+    		android:text="@string/sets"/> 
     </LinearLayout>
     <LinearLayout
 		android:orientation="horizontal" 
@@ -38,6 +44,12 @@
         android:id="@+id/reps_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+		<TextView 
+		    android:id="@+id/reps_hint"
+    		android:layout_width="wrap_content" 
+    		android:layout_height="wrap_content" 
+    		android:textColor="#0000ff"
+    		android:text="@string/reps"/> 
     </LinearLayout>
 	 
 

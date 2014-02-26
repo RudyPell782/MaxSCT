@@ -2,6 +2,8 @@ package com.maxsct.dc;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -45,6 +47,8 @@ public class ExerciseFragment extends Fragment{
 	private Button saveButton;
 	private Button cancelButton;
 	private TextView workoutName;
+	private TextView setsHint;
+	private TextView repsHint;
 	private Spinner repsCount;
 	private Spinner setsCount;
 	private TextView weight;
@@ -53,6 +57,32 @@ public class ExerciseFragment extends Fragment{
 	private String workout;
 	private int workoutID;
     private int exercise;	
+    private String[] exerciseList = {"DB Flat Press", "HS Shoulder Press", "CG Bench Press","Wide Pulldowns", "T-Bar Row", "BB Curl", "Reverse-grip Curl", "Seated Calf",
+    		"Lying Ham", "Front Squat","HS Incline", "DB OHP", "JM press","CG Pulldown", "BB Row","DB Curl", "Hammer Curl", "Standing Calf","Seated Ham", "Leg Press"};
+	private String[] hints1 = {"Rest Pause", "11-15"};
+	private String[] hints2 = {"2", "8-10, 20"};
+	private String[] hints3 = {"2", "6-9"};
+	
+	
+	HashMap<String, String[]> hintsDictionary = new HashMap<String, String[]>(){{
+	  for(int i=0; i<exerciseList.length; i++){
+		  if(exerciseList[i].equals("Front Squat") || exerciseList[i].equals("Leg Press")){
+			  put(exerciseList[i], hints2);
+		  }
+		  else if(exerciseList[i].equals("BB Row") || exerciseList[i].equals("T-Bar Row")){
+			  put(exerciseList[i], hints3);
+		  }
+		  else {
+			  put(exerciseList[i], hints1);
+		  }
+	  }
+	    
+	}};
+
+    public String getValue (String key, int valueIdx) {
+        String[] valueSet = hintsDictionary.get(key);
+        return valueSet[valueIdx];
+    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +102,10 @@ public class ExerciseFragment extends Fragment{
 
 		exerciseName = (TextView) v.findViewById(R.id.exercise_name);
 		exerciseName.setText(exerciseNameLabel);
+		setsHint = (TextView) v.findViewById(R.id.sets_hint);
+		setsHint.setText(getValue(exerciseNameLabel, 0));
+		repsHint = (TextView) v.findViewById(R.id.reps_hint);
+		repsHint.setText(getValue(exerciseNameLabel, 1));
 		// The mealRating spinner lets people assign favorites of meals they've
 		// eaten.
 		// Meals with 4 or 5 ratings will appear in the Favorites view.

@@ -7,7 +7,7 @@ import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-public class MealSpottingApplication extends Application {
+public class DCApplication extends Application {
 
 	@Override
 	public void onCreate() {
@@ -52,6 +52,8 @@ public class MealSpottingApplication extends Application {
 		defaultACL.setPublicReadAccess(true);
 
 		ParseACL.setDefaultACL(defaultACL, true);
+		
+		
 	}
 
 }
