@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
+import com.maxsct.dc.R;
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
-import com.parse.mealspotting.R;
 
 public class WorkoutListActivity extends ListActivity {
 
@@ -46,7 +46,7 @@ public class WorkoutListActivity extends ListActivity {
 		        usernameView.setText("Performed " + dateString);
 		        return view;
 		      }
-		    };;
+		    };
 		mainAdapter.setTextKey("title");
 		
 
@@ -96,6 +96,7 @@ public class WorkoutListActivity extends ListActivity {
 	private void showFavorites() {
 		Intent i = new Intent(this, TopExerciseActivity.class);
 		startActivity(i);
+		finish();
 	}
 
 	private void newWorkout() {
