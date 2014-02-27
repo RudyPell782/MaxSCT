@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.maxsct.dc.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-import com.parse.mealspotting.R;
 
 public class RegisterActivity extends Activity {
 

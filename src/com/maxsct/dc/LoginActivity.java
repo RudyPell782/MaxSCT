@@ -2,17 +2,18 @@ package com.maxsct.dc;
 
 
 	import android.app.Activity;
-	import android.content.Intent;
-	import android.os.Bundle;
-	import android.view.Menu;
-	import android.view.View;
-	import android.widget.EditText;
-	import android.widget.TextView;
-	import com.parse.mealspotting.R;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.maxsct.dc.R;
 
 	import com.parse.LogInCallback;
-	import com.parse.ParseException;
-	import com.parse.ParseUser;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 	public class LoginActivity extends Activity {
 

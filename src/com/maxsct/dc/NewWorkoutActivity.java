@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.maxsct.dc.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
-import com.parse.mealspotting.R;
 
 /*
  * NewMealActivity contains two fragments that handle

@@ -20,13 +20,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.maxsct.dc.R;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.parse.mealspotting.R;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -52,9 +52,9 @@ public class NewWorkoutFragment extends Fragment {
 	private String workoutName;
 	private String[] exerciseList;
 	private String[] exerciseList1A = {"DB Flat Press", "HS Shoulder Press", "CG Bench Press","Wide Pulldowns", "T-Bar Row"};
-	private String[] exerciseList1B = {"BB Curl", "Reverse grip curl", "seated calf","lying Ham", "Front Squat"};
-	private String[] exerciseList2A = {"HS incline", "DB OHP", "JM press","CG Pulldown", "BB Row"};
-	private String[] exerciseList2B = {"DB Curl", "hammer curl", "standing calf","Seated Ham", "Leg Press"};
+	private String[] exerciseList1B = {"BB Curl", "Reverse-grip Curl", "Seated Calf","Lying Ham", "Front Squat"};
+	private String[] exerciseList2A = {"HS Incline", "DB OHP", "JM press","CG Pulldown", "BB Row"};
+	private String[] exerciseList2B = {"DB Curl", "Hammer Curl", "Standing Calf","Seated Ham", "Leg Press"};
 	private final static String TAG = "Workout";
 	
 	//private Spinner mealRating;

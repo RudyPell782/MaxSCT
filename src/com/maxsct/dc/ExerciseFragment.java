@@ -32,13 +32,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.maxsct.dc.R;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.parse.mealspotting.R;
 
 public class ExerciseFragment extends Fragment{
 
@@ -58,6 +61,7 @@ public class ExerciseFragment extends Fragment{
 	private String workout;
 	private int workoutID;
     private int exerciseID;	
+    private String bestWeight;
     private String[] exerciseList = {"DB Flat Press", "HS Shoulder Press", "CG Bench Press","Wide Pulldowns", "T-Bar Row", "BB Curl", "Reverse-grip Curl", "Seated Calf",
     		"Lying Ham", "Front Squat","HS Incline", "DB OHP", "JM press","CG Pulldown", "BB Row","DB Curl", "Hammer Curl", "Standing Calf","Seated Ham", "Leg Press"};
 	private String[] hints1 = {"Rest Pause", "11-15"};
@@ -121,6 +125,23 @@ public class ExerciseFragment extends Fragment{
 		repsCount.setAdapter(spinnerAdapterReps);
 		
 		weight = ((EditText) v.findViewById(R.id.weight));
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercise");
+		query.whereEqualTo("name", exerciseNameLabel);
+		query.orderByDescending("weight");
+		query.getFirstInBackground(new GetCallback<ParseObject>() {
+			@Override
+			public void done(ParseObject object, ParseException e) {
+		    if (object == null) {
+		      Log.i("score", "The getFirst request failed.");
+		    } else {
+		      Log.d("score", "Retrieved the object.");
+		      Log.i("Parse", Integer.toString(object.getInt("weight")));
+		      bestWeight = Integer.toString(object.getInt("weight"));
+		      weight.setHint("Best: " + bestWeight);
+		    }
+		  }
+		});
+		
 
 		saveButton = ((Button) v.findViewById(R.id.save_button));
 		saveButton.setOnClickListener(new View.OnClickListener() {
