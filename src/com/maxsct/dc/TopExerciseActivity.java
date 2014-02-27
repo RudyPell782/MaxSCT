@@ -17,7 +17,7 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.parse.mealspotting.R;
 
-public class WorkoutListActivity extends ListActivity {
+public class TopExerciseActivity extends Activity {
 
 	private ParseQueryAdapter<Workout> mainAdapter;
 	//private BestExerciseAdapter favoritesAdapter;
@@ -31,7 +31,7 @@ public class WorkoutListActivity extends ListActivity {
 			  finish();
 			}
 		super.onCreate(savedInstanceState);
-		getListView().setClickable(false);
+		
 
 		mainAdapter = new ParseQueryAdapter<Workout>(this, Workout.class){
 		      @Override
@@ -51,7 +51,7 @@ public class WorkoutListActivity extends ListActivity {
 		
 
 		// Default view is all meals
-		setListAdapter(mainAdapter);
+	//	setListAdapter(mainAdapter);
 	}
 	
 
@@ -76,7 +76,7 @@ public class WorkoutListActivity extends ListActivity {
 		}
 
 		case R.id.action_favorites: {
-			showFavorites();
+			//showFavorites();
 			break;
 		}
 
@@ -89,13 +89,13 @@ public class WorkoutListActivity extends ListActivity {
 	}
 
 	private void updateWorkoutList() {
-		mainAdapter.loadObjects();
-		setListAdapter(mainAdapter);
+		Intent i = new Intent(this, WorkoutListActivity.class);
+		startActivity(i);
 	}
 
 	private void showFavorites() {
-		Intent i = new Intent(this, TopExerciseActivity.class);
-		startActivity(i);
+		Intent i = new Intent(this, NewWorkoutActivity.class);
+		startActivityForResult(i, 0);
 	}
 
 	private void newWorkout() {

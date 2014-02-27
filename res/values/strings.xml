@@ -32,6 +32,7 @@
     <string name="sign_in_label">Sign In</string>
     <string name="dont_have_an_account_label">Don&amp;apos;t have an account? Register!</string>
     <string name="action_settings">Settings</string>
+    <string name="exercise_stats">Exercise Stats</string>
     
     <string-array name="reps_array">
         <item>18</item>
