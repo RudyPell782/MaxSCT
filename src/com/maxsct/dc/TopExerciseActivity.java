@@ -51,8 +51,8 @@ public class TopExerciseActivity extends Activity {
 		    if (object == null) {
 		      Log.i("score", "The getFirst request failed.");
 		    } else {
-		      Log.d("score", "Retrieved the object.");
-		      bestWeights[0] = object.get("weight").toString();
+		      Log.d("Parse", "Retrieved the object.");
+		      bestWeights[0] = Integer.toString(object.getInt("weight"));
 		    }
 		  }
 		});
@@ -66,8 +66,8 @@ public class TopExerciseActivity extends Activity {
 		    if (object == null) {
 		      Log.i("score", "The getFirst request failed.");
 		    } else {
-		      Log.d("score", "Retrieved the object.");
-		      bestWeights[1] = object.get("weight").toString();
+		      Log.d("Parse", "Retrieved the object.");
+		      bestWeights[1] = Integer.toString(object.getInt("weight"));
 		    }
 		  }
 		});
@@ -81,8 +81,8 @@ public class TopExerciseActivity extends Activity {
 		    if (object == null) {
 		      Log.i("score", "The getFirst request failed.");
 		    } else {
-		      Log.d("score", "Retrieved the object.");
-		      bestWeights[2] = object.get("weight").toString();
+		      Log.d("Parse", "Retrieved the object.");
+		      bestWeights[2] = Integer.toString(object.getInt("weight"));
 		      
 		    }   
 		  }
